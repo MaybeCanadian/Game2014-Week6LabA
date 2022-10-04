@@ -16,15 +16,27 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Boundry bounds;
 
+    public bool UsingMobleInput = false;
+
     private void Start()
     {
         mainCamera = Camera.main;
         transform.position = startPosition;
+
+        UsingMobleInput = Application.platform == RuntimePlatform.Android || 
+                          Application.platform == RuntimePlatform.IPhonePlayer;
+
     }
     void Update()
     {
-        //ConventionalInput();
-        MobileInput();
+        if(UsingMobleInput)
+        {
+            MobileInput();
+        }
+        else
+        {
+            ConventionalInput();
+        }
         Move();
         ClampInBounds();
 

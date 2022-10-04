@@ -396,6 +396,10 @@ PrefabInstance:
       value: -125072883
       objectReference: {fileID: 0}
     - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: LerpSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: bounds.XMax
       value: 1.9
       objectReference: {fileID: 0}
@@ -410,6 +414,14 @@ PrefabInstance:
     - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: bounds.YMin
       value: -4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: VerticalSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: HorizontalSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 52832443651912311, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: m_Name
