@@ -18,10 +18,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     public bool UsingMobleInput = false;
 
+    public ScoreManager scoreManager;
+
     private void Start()
     {
         mainCamera = Camera.main;
         transform.position = startPosition;
+
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
 
         UsingMobleInput = Application.platform == RuntimePlatform.Android || 
                           Application.platform == RuntimePlatform.IPhonePlayer;
@@ -36,9 +40,16 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             ConventionalInput();
+
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                scoreManager.AddScore(1);
+            }
         }
         Move();
         ClampInBounds();
+
+
 
     }
 
