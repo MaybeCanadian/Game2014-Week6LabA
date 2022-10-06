@@ -19,7 +19,12 @@ public class BulletBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch(direction)
+        SetDirection(direction);
+    }
+
+    public void SetDirection(BulletDirection inDirection)
+    {
+        switch (inDirection)
         {
             case BulletDirection.up:
                 velocity = Vector3.up * speed;

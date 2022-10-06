@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 2084966104}
   - component: {fileID: 2084966105}
   - component: {fileID: 2084966106}
+  - component: {fileID: 2084966107}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -683,6 +684,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreLabel: {fileID: 1346429934}
   score: 0
+--- !u!114 &2084966107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084966102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3aaa1fa883ffa43997dfa027cc0861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6784681597594434446, guid: d58f20de14d1af74b83cb7481f951c8e, type: 3}
+  bulletCount: 50
 --- !u!1001 &52832443309170255
 PrefabInstance:
   m_ObjectHideFlags: 0
