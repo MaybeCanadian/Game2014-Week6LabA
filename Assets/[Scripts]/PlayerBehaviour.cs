@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Header("Player Movement Preperties")]
     public float HorizontalSpeed = 2.0f;
     public float VerticalSpeed = 2.0f;
-
     public float LerpSpeed = 10.0f;
-
     public Vector2 startPosition = new Vector2(0.0f, -4.5f);
-
     private Camera mainCamera;
-
     public Boundry bounds;
-
     public bool UsingMobleInput = false;
+    public float fireRate = 0.5f;
 
+    [Header("Player References")]
     public ScoreManager scoreManager;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
+    public Transform bulletParent;
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         UsingMobleInput = Application.platform == RuntimePlatform.Android || 
                           Application.platform == RuntimePlatform.IPhonePlayer;
+
+        InvokeRepeating("FireBullet", 0.0f, fireRate);
 
     }
     void Update()
@@ -46,10 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
                 scoreManager.AddScore(1);
             }
         }
-        Move();
         ClampInBounds();
-
-
 
     }
 
@@ -69,16 +69,16 @@ public class PlayerBehaviour : MonoBehaviour
         transform.position += new Vector3(x, y, 0) * Time.deltaTime;
     }
 
-    private void Move()
-    {
-        
-    }
-
     private void ClampInBounds()
     {
         float clampedX = Mathf.Clamp(transform.position.x, bounds.XMin, bounds.XMax);
         float clampedY = Mathf.Clamp(transform.position.y, bounds.YMin, bounds.YMax);
 
         transform.position = new Vector3(clampedX, clampedY, 0);
+    }
+
+    private void FireBullet()
+    {
+        var instanceBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity, bulletParent);
     }
 }

@@ -15,23 +15,23 @@ public class BulletBehaviour : MonoBehaviour
     public float speed;
 
     public Boundry bounds;
-    public Vector3 velocity;
+    private Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
         switch(direction)
         {
             case BulletDirection.up:
-                velocity = Vector3.up * speed * Time.deltaTime;
+                velocity = Vector3.up * speed;
                 break;
             case BulletDirection.right:
-                velocity = Vector3.right * speed * Time.deltaTime;
+                velocity = Vector3.right * speed;
                 break;
             case BulletDirection.down:
-                velocity = Vector3.down * speed * Time.deltaTime;
+                velocity = Vector3.down * speed;
                 break;
             case BulletDirection.left:
-                velocity = Vector3.left * speed * Time.deltaTime;
+                velocity = Vector3.left * speed;
                 break;
         }
     }
@@ -45,7 +45,7 @@ public class BulletBehaviour : MonoBehaviour
 
     private void Move()
     {
-        transform.position += velocity;
+        transform.position += velocity * Time.deltaTime;
     }
 
     private void CheckBounds()
