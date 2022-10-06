@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &52832443651912311
+--- !u!1 &6784681597594434446
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 52832443651912308}
-  - component: {fileID: 52832443651912309}
-  - component: {fileID: 52832443651912310}
-  - component: {fileID: 343141436}
+  - component: {fileID: 6784681597594434442}
+  - component: {fileID: 6784681597594434445}
+  - component: {fileID: 6784681597594434444}
+  - component: {fileID: 6784681597594434447}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &52832443651912308
+--- !u!4 &6784681597594434442
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52832443651912311}
+  m_GameObject: {fileID: 6784681597594434446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -4.24, z: 0}
+  m_LocalPosition: {x: 0.010710478, y: -3.2858508, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &52832443651912309
+--- !u!212 &6784681597594434445
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52832443651912311}
+  m_GameObject: {fileID: 6784681597594434446}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,56 +72,63 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -125072883
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3388fdab0a433844381d1fdbf346dd29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7cd422b5f9e14de46a2ef7aa831452b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.05, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &52832443651912310
+--- !u!61 &6784681597594434444
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784681597594434446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.1, y: 0.26}
+    newSize: {x: 0.05, y: 0.13}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.26}
+  m_EdgeRadius: 0
+--- !u!114 &6784681597594434447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52832443651912311}
+  m_GameObject: {fileID: 6784681597594434446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93681b772847c943ad7a1b25d08bed4, type: 3}
+  m_Script: {fileID: 11500000, guid: 70b21042b74ec02438b31b8aa1e40f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HorizontalSpeed: 7
-  VerticalSpeed: 7
-  LerpSpeed: 5
-  startPosition: {x: 0, y: -4.5}
+  direction: 0
+  speed: 4
   bounds:
-    XMax: 1.9
-    XMin: -1.9
-    YMax: -3.35
-    YMin: -4.7
-  UsingMobleInput: 0
-  scoreManager: {fileID: 0}
---- !u!58 &343141436
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52832443651912311}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.009481877, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.24546346
+    XMax: 3
+    XMin: -3
+    YMax: -6
+    YMin: 6
+  velocity: {x: 0, y: 0, z: 0}

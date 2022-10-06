@@ -29,7 +29,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Move()
     {
-
         var HorizontalLength = bounds.XMax - bounds.XMin;
         transform.position = new Vector3(Mathf.PingPong(Time.time * HorizontalSpeed, HorizontalLength) - bounds.XMax,
             transform.position.y - VerticalSpeed * Time.deltaTime, transform.position.z);
