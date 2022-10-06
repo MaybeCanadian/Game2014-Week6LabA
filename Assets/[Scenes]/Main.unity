@@ -388,6 +388,7 @@ MonoBehaviour:
     XMin: 0
     YMax: 0
     YMin: 0
+  bulletManager: {fileID: 0}
 --- !u!1 &984849720
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +698,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6784681597594434446, guid: d58f20de14d1af74b83cb7481f951c8e, type: 3}
-  bulletCount: 50
+  bulletParent: {fileID: 984849721}
+  bulletCount: 10
+  ActiveBullets: 0
+  BulletPool: 0
 --- !u!1001 &52832443309170255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -754,6 +758,14 @@ PrefabInstance:
       propertyPath: bulletParent
       value: 
       objectReference: {fileID: 984849721}
+    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: scoreManager
+      value: 
+      objectReference: {fileID: 2084966106}
+    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: bulletManager
+      value: 
+      objectReference: {fileID: 2084966107}
     - target: {fileID: 52832443651912311, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: m_Name
       value: Player

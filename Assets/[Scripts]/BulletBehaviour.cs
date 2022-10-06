@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum BulletDirection 
-{
-    up, right, down, left
-}
 
 public class BulletBehaviour : MonoBehaviour
 {
-
+    [Header("Bullet Properties")]
     public BulletDirection direction;
     public float speed;
-
     public Boundry bounds;
     private Vector3 velocity;
+
+    [Header("Bullet References")]
+    public BulletManager bulletManager;
     // Start is called before the first frame update
     void Start()
     {
+        bulletManager = FindObjectOfType<BulletManager>();
         SetDirection(direction);
     }
 
@@ -58,12 +56,12 @@ public class BulletBehaviour : MonoBehaviour
         if (transform.position.x > bounds.XMax || transform.position.x < bounds.XMin ||
             transform.position.y > bounds.YMax || transform.position.y < bounds.YMin)
         {
-            Destroy(gameObject);
+            bulletManager.RetrunBullet(gameObject);
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        bulletManager.RetrunBullet(gameObject);
     }
 }

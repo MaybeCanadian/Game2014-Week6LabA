@@ -8,8 +8,11 @@ public class BulletManager : MonoBehaviour
 {
     public Queue<GameObject> bulletQueue;
     public GameObject bulletPrefab;
+    public Transform bulletParent;
     [Range(10, 200)]
     public int bulletCount = 50;
+    public int ActiveBullets = 0;
+    public int BulletPool = 0;
 
     void Start()
     {
@@ -23,6 +26,8 @@ public class BulletManager : MonoBehaviour
         {
             CreateBullet();
         }
+
+        BulletPool = bulletQueue.Count;
     }
 
     public GameObject GetBullet(Vector2 position, BulletDirection direction)
@@ -36,12 +41,15 @@ public class BulletManager : MonoBehaviour
             bullet.transform.position = position;
             bullet.GetComponent<BulletBehaviour>().SetDirection(direction);
 
+        ActiveBullets++;
+        BulletPool = bulletQueue.Count;
+
         return bullet;
     }
 
     private void CreateBullet()
     {
-        var bullet = Instantiate(bulletPrefab);
+        var bullet = Instantiate(bulletPrefab, bulletParent);
         bullet.SetActive(false);
         bulletQueue.Enqueue(bullet);
     }
@@ -50,5 +58,8 @@ public class BulletManager : MonoBehaviour
     {
         bullet.SetActive(false);
         bulletQueue.Enqueue(bullet);
+
+        ActiveBullets--;
+        BulletPool = bulletQueue.Count;
     } 
 }

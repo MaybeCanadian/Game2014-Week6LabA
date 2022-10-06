@@ -17,9 +17,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Player References")]
     public ScoreManager scoreManager;
-    public GameObject bulletPrefab;
+    public BulletManager bulletManager;
     public Transform bulletSpawnPoint;
-    public Transform bulletParent;
 
     private void Start()
     {
@@ -79,6 +78,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
-        var instanceBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity, bulletParent);
+        var instanceBullet = bulletManager.GetBullet(bulletSpawnPoint.position, BulletDirection.up);
     }
 }
