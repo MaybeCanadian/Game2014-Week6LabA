@@ -4,8 +4,10 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class BulletManager : MonoBehaviour
+ public class BulletManager : MonoBehaviour
 {
+    public static BulletManager instance { get; private set; }
+
     public Queue<GameObject> bulletQueue;
     public GameObject bulletPrefab;
     public Transform bulletParent;
@@ -13,6 +15,11 @@ public class BulletManager : MonoBehaviour
     public int bulletCount = 50;
     public int ActiveBullets = 0;
     public int BulletPool = 0;
+
+    private void Awake()
+    {
+        
+    }
 
     void Start()
     {
