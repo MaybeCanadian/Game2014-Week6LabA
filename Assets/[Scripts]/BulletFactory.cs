@@ -27,18 +27,18 @@ public class BulletFactory : MonoBehaviour
     {
         GameObject bullet = null;
 
-        var testBullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
-        testBullet.GetComponent<BulletBehaviour>().speed = 0.0f;
+        bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
+        //testBullet.GetComponent<BulletBehaviour>().speed = 0.0f;
 
         switch (type)
         {
             case e_BulletType.player:
-                testBullet.GetComponent<SpriteRenderer>().sprite = playerBulletSprite;
-                testBullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.up);
+                bullet.GetComponent<SpriteRenderer>().sprite = playerBulletSprite;
+                bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.up);
                 break;
             case e_BulletType.enemy:
-                testBullet.GetComponent<SpriteRenderer>().sprite = EnemyBulletSprite;
-                testBullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.down);
+                bullet.GetComponent<SpriteRenderer>().sprite = EnemyBulletSprite;
+                bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.down);
                 break;
         }
 

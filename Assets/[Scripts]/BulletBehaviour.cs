@@ -56,12 +56,12 @@ public class BulletBehaviour : MonoBehaviour
         if (transform.position.x > bounds.XMax || transform.position.x < bounds.XMin ||
             transform.position.y > bounds.YMax || transform.position.y < bounds.YMin)
         {
-            bulletManager.RetrunBullet(gameObject);
+            bulletManager.ReturnBullet(gameObject);
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        bulletManager.RetrunBullet(gameObject);
+        bulletManager.ReturnBullet(gameObject);
     }
 }

@@ -13,9 +13,11 @@ public class BulletManager : MonoBehaviour
     public int bulletCount = 50;
     public int ActiveBullets = 0;
     public int BulletPool = 0;
+    public BulletFactory factory;
 
     void Start()
     {
+        factory = GameObject.FindObjectOfType<BulletFactory>();
         bulletQueue = new Queue<GameObject>();
         BuildBulletPool();
     }
@@ -49,12 +51,15 @@ public class BulletManager : MonoBehaviour
 
     private void CreateBullet()
     {
-        var bullet = Instantiate(bulletPrefab, bulletParent);
-        bullet.SetActive(false);
+        //var bullet = Instantiate(bulletPrefab, bulletParent);
+        //bullet.SetActive(false);
+        //bulletQueue.Enqueue(bullet);
+
+        var bullet = factory.CreateBullet(e_BulletType.player);
         bulletQueue.Enqueue(bullet);
     }
 
-    public void RetrunBullet(GameObject bullet)
+    public void ReturnBullet(GameObject bullet)
     {
         bullet.SetActive(false);
         bulletQueue.Enqueue(bullet);
