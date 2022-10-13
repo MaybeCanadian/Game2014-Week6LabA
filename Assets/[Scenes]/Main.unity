@@ -388,6 +388,7 @@ MonoBehaviour:
     XMin: 0
     YMax: 0
     YMin: 0
+  type: 0
   bulletManager: {fileID: 0}
 --- !u!1 &984849720
 GameObject:
@@ -634,6 +635,7 @@ GameObject:
   - component: {fileID: 2084966105}
   - component: {fileID: 2084966106}
   - component: {fileID: 2084966107}
+  - component: {fileID: 2084966108}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -668,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35010318706e594d8814a4244708f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyNumber: 3
+  enemyNumber: 1
   enemyPrefab: {fileID: 3665107921656434667, guid: c600609f14ed98440b79726583b2f07f, type: 3}
   enemyList: []
 --- !u!114 &2084966106
@@ -697,11 +699,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3aaa1fa883ffa43997dfa027cc0861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6784681597594434446, guid: d58f20de14d1af74b83cb7481f951c8e, type: 3}
+  bulletCount: 320000004b000000
+  ActiveBullets: 0000000000000000
+  RemainingBullets: 0000000000000000
   bulletParent: {fileID: 984849721}
-  bulletCount: 183
-  ActiveBullets: 0
-  BulletPool: 0
+  factory: {fileID: 2084966108}
+--- !u!114 &2084966108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084966102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b773be7348b464fa3a65284beba4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &52832443309170255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,6 +724,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 343141436, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 52832443651912308, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -754,14 +772,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
-      propertyPath: fireRate
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
-      propertyPath: bulletParent
-      value: 
-      objectReference: {fileID: 984849721}
     - target: {fileID: 52832443651912310, guid: 8b2513b0867fc0d4ab28b9066fdd712c, type: 3}
       propertyPath: scoreManager
       value: 

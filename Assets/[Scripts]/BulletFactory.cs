@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -7,12 +8,12 @@ using UnityEngine;
 public class BulletFactory : MonoBehaviour
 {
 
-    public GameObject bulletPrefab;
-    public Transform bulletParent;
+    private GameObject bulletPrefab;
+    private Transform bulletParent;
 
     //sprite textures
-    public Sprite playerBulletSprite;
-    public Sprite EnemyBulletSprite;
+    private Sprite playerBulletSprite;
+    private Sprite EnemyBulletSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class BulletFactory : MonoBehaviour
     {
         GameObject bullet = null;
 
-        bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
+        bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, bulletParent);
         //testBullet.GetComponent<BulletBehaviour>().speed = 0.0f;
 
         switch (type)
@@ -35,13 +36,17 @@ public class BulletFactory : MonoBehaviour
             case e_BulletType.player:
                 bullet.GetComponent<SpriteRenderer>().sprite = playerBulletSprite;
                 bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.up);
+                bullet.name = "Player Bullet";
                 break;
             case e_BulletType.enemy:
                 bullet.GetComponent<SpriteRenderer>().sprite = EnemyBulletSprite;
                 bullet.GetComponent<BulletBehaviour>().SetDirection(BulletDirection.down);
+                bullet.name = "Enemy Bullet";
                 break;
         }
 
+        bullet.GetComponent<BulletBehaviour>().type = type;
+        //Debug.Log(type);
         bullet.SetActive(false);
 
         return bullet;

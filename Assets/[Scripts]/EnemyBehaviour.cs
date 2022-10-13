@@ -13,11 +13,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     public SpriteRenderer sr;
 
+    [Header("Other Enemy Properties")]
+    public Color randomColor;
+    public SpriteRenderer spriteRenderer;
+    public Transform bulletSpawn;
+    public float FireRate = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         ResetEnemy();
+        InvokeRepeating("FireBullet", 0.0f, FireRate);
     }
 
     // Update is called once per frame
@@ -25,6 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Move();
         CheckBounds();
+        
     }
 
     private void Move()
@@ -55,5 +63,10 @@ public class EnemyBehaviour : MonoBehaviour
         List<Color> ColorList = new List<Color>() { Color.red, Color.yellow, Color.magenta, Color.cyan, Color.white, Color.white };
 
         sr.material.SetColor("_Color", ColorList[Random.Range(0, ColorList.Count)]);
+    }
+
+    private void FireBullet()
+    {
+        var bullet = GameObject.FindObjectOfType<BulletManager>().GetBullet(bulletSpawn.position, e_BulletType.enemy);
     }
 }

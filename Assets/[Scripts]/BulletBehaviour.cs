@@ -10,6 +10,7 @@ public class BulletBehaviour : MonoBehaviour
     public float speed;
     public Boundry bounds;
     private Vector3 velocity;
+    public e_BulletType type;
 
     [Header("Bullet References")]
     public BulletManager bulletManager;
@@ -37,6 +38,8 @@ public class BulletBehaviour : MonoBehaviour
                 velocity = Vector3.left * speed;
                 break;
         }
+
+        direction = inDirection;
     }
 
     // Update is called once per frame
@@ -56,12 +59,27 @@ public class BulletBehaviour : MonoBehaviour
         if (transform.position.x > bounds.XMax || transform.position.x < bounds.XMin ||
             transform.position.y > bounds.YMax || transform.position.y < bounds.YMin)
         {
-            bulletManager.ReturnBullet(gameObject);
+            bulletManager.ReturnBullet(gameObject, type);
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        bulletManager.ReturnBullet(gameObject);
+        switch(type) 
+        {
+            case e_BulletType.player:
+                if(collision.tag == "Enemy")
+                {
+                    bulletManager.ReturnBullet(gameObject, type);
+                }
+                break;
+            case e_BulletType.enemy:
+                if(collision.gameObject.tag == "Player")
+                {
+                    Debug.Log("ow");
+                    bulletManager.ReturnBullet(gameObject, type);
+                }
+                break;
+        }
     }
 }

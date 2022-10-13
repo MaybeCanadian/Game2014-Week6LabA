@@ -1,70 +1,91 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-
 
 [System.Serializable]
 public class BulletManager : MonoBehaviour
 {
-    public Queue<GameObject> bulletQueue;
-    public GameObject bulletPrefab;
-    public Transform bulletParent;
+    private List<Queue<GameObject>> BulletPools;
     [Range(10, 200)]
-    public int bulletCount = 50;
-    public int ActiveBullets = 0;
-    public int BulletPool = 0;
+    public List<int> bulletCount;
+    public List<int> ActiveBullets;
+    public List<int> RemainingBullets;
+    private int totalPools;
+
+    public Transform bulletParent;
     public BulletFactory factory;
+
 
     void Start()
     {
+        BulletPools = new List<Queue<GameObject>>();
+        BuildBulletPools();
         factory = GameObject.FindObjectOfType<BulletFactory>();
-        bulletQueue = new Queue<GameObject>();
-        BuildBulletPool();
+        for(int i = 0; i < totalPools; i++)
+        {
+            BuildBulletPool((e_BulletType)i);
+        }
     }
 
-    private void BuildBulletPool()
+    private void BuildBulletPools()
     {
-        for(int i = 0; i < bulletCount; i++)
+        totalPools = 0;
+
+        for(int i = 0; i <= Enum.GetValues(typeof(e_BulletType)).Cast<int>().Max(); i++)
         {
-            CreateBullet();
+            var tempPool = new Queue<GameObject>();
+            BulletPools.Add(tempPool);
+            if(bulletCount.Count <= i)
+            bulletCount.Add(50);
+            if (ActiveBullets.Count <= i)
+            ActiveBullets.Add(0);
+            if (RemainingBullets.Count <= i)
+                RemainingBullets.Add(0);
+
+            totalPools++;
         }
 
-        BulletPool = bulletQueue.Count;
     }
 
-    public GameObject GetBullet(Vector2 position, BulletDirection direction)
+    private void BuildBulletPool(e_BulletType type)
     {
-        if (bulletQueue.Count == 0)
+        for(int i = 0; i < bulletCount[(int)type]; i++)
         {
-            CreateBullet();
+            CreateBullet(type);
         }
-            var bullet = bulletQueue.Dequeue();
+    }
+
+    public GameObject GetBullet(Vector2 position, e_BulletType type)
+    {
+        if (!(BulletPools[((int)type)].Count > 0))
+        {
+            CreateBullet(type);
+        }
+            var bullet = BulletPools[(int)type].Dequeue();
             bullet.SetActive(true);
             bullet.transform.position = position;
-            bullet.GetComponent<BulletBehaviour>().SetDirection(direction);
 
-        ActiveBullets++;
-        BulletPool = bulletQueue.Count;
+        ActiveBullets[(int)type]++;
+        RemainingBullets[(int)type] = BulletPools[(int)type].Count;
 
         return bullet;
     }
 
-    private void CreateBullet()
+    private void CreateBullet(e_BulletType type)
     {
-        //var bullet = Instantiate(bulletPrefab, bulletParent);
-        //bullet.SetActive(false);
-        //bulletQueue.Enqueue(bullet);
-
-        var bullet = factory.CreateBullet(e_BulletType.player);
-        bulletQueue.Enqueue(bullet);
+        var bullet = factory.CreateBullet(type);
+        BulletPools[((int)type)].Enqueue(bullet);
+        RemainingBullets[(int)type]++;
     }
 
-    public void ReturnBullet(GameObject bullet)
+    public void ReturnBullet(GameObject bullet, e_BulletType type)
     {
         bullet.SetActive(false);
-        bulletQueue.Enqueue(bullet);
+        BulletPools[(int)type].Enqueue(bullet);
 
-        ActiveBullets--;
-        BulletPool = bulletQueue.Count;
+        ActiveBullets[(int)type]--;
+        RemainingBullets[(int)type] = BulletPools[(int)type].Count;
     } 
 }

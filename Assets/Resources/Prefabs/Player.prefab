@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 343141436}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,11 +140,10 @@ MonoBehaviour:
     YMax: -3.35
     YMin: -4.7
   UsingMobleInput: 0
-  fireRate: 0.5
+  fireRate: 0.2
   scoreManager: {fileID: 0}
-  bulletPrefab: {fileID: 6784681597594434446, guid: d58f20de14d1af74b83cb7481f951c8e, type: 3}
+  bulletManager: {fileID: 0}
   bulletSpawnPoint: {fileID: 953293013}
-  bulletParent: {fileID: 0}
 --- !u!58 &343141436
 CircleCollider2D:
   m_ObjectHideFlags: 0
