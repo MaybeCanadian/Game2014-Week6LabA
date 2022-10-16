@@ -15,14 +15,12 @@ public class BulletManager : MonoBehaviour
     private int totalPools;
 
     public Transform bulletParent;
-    public BulletFactory factory;
 
 
     void Start()
     {
         BulletPools = new List<Queue<GameObject>>();
         BuildBulletPools();
-        factory = GameObject.FindObjectOfType<BulletFactory>();
         for(int i = 0; i < totalPools; i++)
         {
             BuildBulletPool((e_BulletType)i);
@@ -36,11 +34,11 @@ public class BulletManager : MonoBehaviour
         for(int i = 0; i <= Enum.GetValues(typeof(e_BulletType)).Cast<int>().Max(); i++)
         {
             var tempPool = new Queue<GameObject>();
-            BulletPools.Add(tempPool);
+                BulletPools.Add(tempPool);
             if(bulletCount.Count <= i)
-            bulletCount.Add(50);
+                bulletCount.Add(50);
             if (ActiveBullets.Count <= i)
-            ActiveBullets.Add(0);
+                ActiveBullets.Add(0);
             if (RemainingBullets.Count <= i)
                 RemainingBullets.Add(0);
 
@@ -51,10 +49,14 @@ public class BulletManager : MonoBehaviour
 
     private void BuildBulletPool(e_BulletType type)
     {
-        for(int i = 0; i < bulletCount[(int)type]; i++)
+        
+        for (int i = 0; i < bulletCount[(int)type]; i++)
         {
+           
             CreateBullet(type);
         }
+
+        RemainingBullets[(int)type] = BulletPools[(int)type].Count;
     }
 
     public GameObject GetBullet(Vector2 position, e_BulletType type)
@@ -75,7 +77,9 @@ public class BulletManager : MonoBehaviour
 
     private void CreateBullet(e_BulletType type)
     {
-        var bullet = factory.CreateBullet(type);
+
+        //Debug.Log("test");
+        var bullet = BulletFactory.FactoryInstance.CreateBullet(type);
         BulletPools[((int)type)].Enqueue(bullet);
         RemainingBullets[(int)type]++;
     }

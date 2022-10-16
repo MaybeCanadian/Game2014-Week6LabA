@@ -7,7 +7,6 @@ using UnityEngine;
 [System.Serializable]
 public class BulletFactory : MonoBehaviour
 {
-
     private GameObject bulletPrefab;
     private Transform bulletParent;
 
@@ -15,9 +14,20 @@ public class BulletFactory : MonoBehaviour
     private Sprite playerBulletSprite;
     private Sprite EnemyBulletSprite;
 
+    public static BulletFactory FactoryInstance;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if(FactoryInstance != null && FactoryInstance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            FactoryInstance = this;
+        }
+
         playerBulletSprite = Resources.Load<Sprite>("Sprites/Bullet");
         EnemyBulletSprite = Resources.Load<Sprite>("Sprites/EnemySmallBullet");
         bulletPrefab = Resources.Load("Prefabs/Bullet") as GameObject;
@@ -44,9 +54,8 @@ public class BulletFactory : MonoBehaviour
                 bullet.name = "Enemy Bullet";
                 break;
         }
-
-        bullet.GetComponent<BulletBehaviour>().type = type;
         //Debug.Log(type);
+        bullet.GetComponent<BulletBehaviour>().SetType(type);
         bullet.SetActive(false);
 
         return bullet;

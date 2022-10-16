@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 52832443651912308}
   - component: {fileID: 52832443651912309}
   - component: {fileID: 52832443651912310}
-  - component: {fileID: 343141436}
+  - component: {fileID: 8529822373190928055}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -144,8 +144,8 @@ MonoBehaviour:
   scoreManager: {fileID: 0}
   bulletManager: {fileID: 0}
   bulletSpawnPoint: {fileID: 953293013}
---- !u!58 &343141436
-CircleCollider2D:
+--- !u!70 &8529822373190928055
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,6 +157,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009481877, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.24546346
+  m_Offset: {x: -0.0020600557, y: -0.084463835}
+  m_Size: {x: 0.4708997, y: 0.7510724}
+  m_Direction: 0
