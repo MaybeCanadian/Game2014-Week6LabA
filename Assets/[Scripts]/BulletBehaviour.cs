@@ -12,12 +12,9 @@ public class BulletBehaviour : MonoBehaviour
     private Vector3 velocity;
     public e_BulletType bulletType;
 
-    [Header("Bullet References")]
-    public BulletManager bulletManager;
     // Start is called before the first frame update
     void Start()
     {
-        bulletManager = FindObjectOfType<BulletManager>();
         SetDirection(direction);
     }
 
@@ -64,7 +61,7 @@ public class BulletBehaviour : MonoBehaviour
         if (transform.position.x > bounds.XMax || transform.position.x < bounds.XMin ||
             transform.position.y > bounds.YMax || transform.position.y < bounds.YMin)
         {
-            bulletManager.ReturnBullet(gameObject, bulletType);
+            BulletManager.instance.ReturnBullet(gameObject, bulletType);
         }
     }
 
@@ -76,13 +73,13 @@ public class BulletBehaviour : MonoBehaviour
             case e_BulletType.player:
                 if(collision.tag == "Enemy")
                 {
-                    bulletManager.ReturnBullet(gameObject, bulletType);
+                    BulletManager.instance.ReturnBullet(gameObject, bulletType);
                 }
                 break;
             case e_BulletType.enemy:
                 if (collision.tag == "Player")
                 {
-                    bulletManager.ReturnBullet(gameObject, bulletType);
+                    BulletManager.instance.ReturnBullet(gameObject, bulletType);
                 }
                 break;
         }

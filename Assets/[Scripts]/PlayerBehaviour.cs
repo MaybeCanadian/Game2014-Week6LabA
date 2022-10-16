@@ -17,7 +17,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Player References")]
     public ScoreManager scoreManager;
-    public BulletManager bulletManager;
     public Transform bulletSpawnPoint;
 
     private void Start()
@@ -78,6 +77,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
-        var instanceBullet = bulletManager.GetBullet(bulletSpawnPoint.position, e_BulletType.player);
+        var instanceBullet = BulletManager.instance.GetBullet(bulletSpawnPoint.position, e_BulletType.player);
     }
 }

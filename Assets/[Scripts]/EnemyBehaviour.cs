@@ -67,6 +67,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
-        var bullet = GameObject.FindObjectOfType<BulletManager>().GetBullet(bulletSpawn.position, e_BulletType.enemy);
+        var bullet = BulletManager.instance.GetBullet(bulletSpawn.position, e_BulletType.enemy);
     }
 }
